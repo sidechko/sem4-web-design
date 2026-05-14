@@ -1,0 +1,33 @@
+:root{
+    --text: #c5c5d6;
+    --bg: #222222;
+    --border: #111111;
+    --acent-text: #d0d0e3;
+    --acent-bg: #2b2b2b;
+    --acent-border: #111111;
+    --acent-color: gold;
+    --alt-acent-color: #ffe146;
+    --alt-acent-bg: #515151;
+
+    color: var(--text);
+    font-family: Jost, sans-serif;
+}
+body {
+    margin: 0;
+    background: var(--border);
+    min-height: 100svh;
+}
+hr{
+    color: var(--border);
+}
+
+#content{
+    width: 1700px;
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    border-inline: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}

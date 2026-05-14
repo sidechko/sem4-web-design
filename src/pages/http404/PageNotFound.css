@@ -1,0 +1,72 @@
+.section404{
+    background: var(--bg);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 2svh 2svw;
+    gap: 5px
+}
+.section404 > h1{
+    margin: 0;
+    font-size: 80px;
+    letter-spacing: -1.68px;
+    @media (max-width: 1024px) {
+        font-size: 36px;
+    }
+}
+#home-page-button{
+    padding: 2svh 2svw;
+    background: var(--acent-bg);
+    border-radius: 10px;
+    color: var(--acent-color);
+    text-decoration: none;
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+#home-page-button:hover{
+    background: var(--alt-acent-color);
+    color: var(--acent-bg);
+}
+
+.message{
+    width: 100%;
+    text-align: left;
+}
+#text404{
+    font-size: 180px;
+    color: var(--acent-color);
+    @media (max-width: 1024px) {
+        font-size: 100px;
+    }
+    text-align: right;
+    padding-right: 5px;
+}
+@keyframes rotation {
+    0%{
+        rotate: 0deg;
+    }
+    25%{
+        rotate: 15deg;
+    }
+    50%{
+        rotate: 0deg;
+    }
+    75%{
+        rotate: -15deg;
+    }
+    100%{
+        rotate: 0deg;
+    }
+}
+#not-found{
+    width: 180px;
+    height: 180px;
+    align-self: center;
+    color: var(--acent-color);
+    @media (max-width: 1024px) {
+        width: 100px;
+        height: 100px;
+    }
+    animation: rotation 2s linear infinite;
+}

@@ -1,0 +1,11 @@
+.mainPage{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+.lastThreadHolder{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex-grow: 1;
+}

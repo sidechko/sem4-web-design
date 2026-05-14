@@ -1,0 +1,57 @@
+.threadContainer{
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    background: var(--bg);
+    padding: 16px;
+    gap: 5px;
+    overflow: hidden;
+    @media (max-width: 500px) {
+        h1{
+            font-size: 1em;
+        }
+        p{
+            font-size: 0.7em;
+        }
+    }
+}
+.threadContainer *{
+    margin: 0;
+}
+.avatar{
+    width: 10svh;
+    height: 10svh;
+    object-fit: scale-down;
+}
+.thread{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    max-width: 100%;
+    gap: 5px;
+    flex-grow: 1;
+}
+.ownerSI{
+    max-width: 15svw;
+    min-width: max(12svh, 12svw);
+}
+.tags{
+    align-self: stretch;
+    flex-grow: 1;
+}
+.threadTitle{
+    color: var(--acent-text);
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+}
+.threadInfo{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+}
