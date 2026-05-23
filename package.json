@@ -5,8 +5,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "predeploy": "pnpm run build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "pnpm run build && gh-pages -d dist -r https://github.com/sidechko/sem4-web-design.git",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
