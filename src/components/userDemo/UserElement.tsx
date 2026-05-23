@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {LoadingState, type User} from "../../data/structs.ts";
 import testData from "../../data/testData.ts";
-import NotFoundSvg from "../../assets/not_found.svg?react";
+import NotFoundSvg from "../../../public/assets/not_found.svg?react";
 import {Spin} from "antd";
 import './UserElement.css';
 

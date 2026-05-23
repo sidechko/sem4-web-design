@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 import './PageNotFound.css'
-import NotFoundSvg from "../../assets/not_found.svg?react";
+import NotFoundSvg from "../../../public/assets/not_found.svg?react";
 
 function PageNotFound() {
     const url = window.location.href;

@@ -4,7 +4,7 @@ import NavBar from "../components/navigation/NavBar.tsx";
 import PageNotFound from "../pages/http404/PageNotFound.tsx";
 import ThreadList from "../pages/threadList/ThreadList.tsx";
 import ThreadView from "../pages/thread/ThreadView.tsx";
-import '../assets/fonts/fonts.css'
+import '../../public/assets/fonts/fonts.css'
 import './_main.css'
 
 

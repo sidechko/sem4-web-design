@@ -1,5 +1,5 @@
 import './NavBar.css';
-import logo from '../../assets/starshine.png'
+import logo from '../../../public/assets/starshine.png'
 import {Link} from "react-router-dom";
 
 function NavBar () {

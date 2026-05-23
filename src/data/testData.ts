@@ -3,7 +3,9 @@ import {type Message, type Message2Thread, type Thread, ThreadStatus, type User,
 const testUserShortData : User = {
     userId: 0,
     username: 's1pepega',
-    avatar: '/src/assets/pepega-eng.png',
+    avatar: location.hostname !== 'localhost' ?
+        location.origin+'/sem4-web-design/assets/pepega-eng.png' :
+        '/sem4-web-design/src/assets/pepega-eng.png',
     type: UserType.USER
 }
 const testMessageData : Message = {
