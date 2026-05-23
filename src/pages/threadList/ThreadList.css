@@ -1,9 +1,9 @@
-.mainPage{
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-}
-.lastThreadHolder{
+/*.mainPage{*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    gap: 5px;*/
+/*}*/
+.last-thread-holder{
     display: flex;
     flex-direction: column;
     gap: 5px;

@@ -12,7 +12,7 @@ function PageNotFound() {
                 <h1 className={'message'}>Page not found.</h1>
                 <hr className={'message'}/>
                 <h2 className={'message'}>Page does not exist at url: {url}</h2>
-                <Link id={'home-page-button'} to={'/'}>
+                <Link id={'home-page-button'} className={'accent-clickable'} to={'/threads/0'}>
                     Go to main page
                 </Link>
             </section>

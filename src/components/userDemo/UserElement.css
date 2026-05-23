@@ -1,0 +1,24 @@
+.owner-short-info{
+    max-width: 15svw;
+    min-width: max(12svh, 12svw);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @media (max-width: 500px) {
+        h1{
+            font-size: 1em;
+        }
+        p{
+            font-size: 0.7em;
+        }
+    }
+}
+.owner-short-info *{
+    margin: 0;
+}
+.avatar{
+    width: 10svh;
+    height: 10svh;
+    object-fit: scale-down;
+}

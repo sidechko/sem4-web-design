@@ -1,75 +1,31 @@
-import {useEffect, useState} from "react";
 import TimestampFormatter from "../../../data/TimestampFormatter.ts";
 import './ThreadPreview.css';
-import {Rate, Spin} from 'antd';
-import {LoadingState, type Thread, type User} from "../../../data/structs.ts";
-import testData from "../../../data/testData.ts";
-import NotFoundSvg from "../../../assets/not_found.svg?react";
+import {Rate} from 'antd';
+import {type Thread} from "../../../data/structs.ts";
+import UserElement from "../../userDemo/UserElement.tsx";
+import {useNavigate} from "react-router-dom";
 
-function ThreadPreview(prop: { thread: Thread }) {
-    const [threadOwner, setThreadOwner] = useState<User | null>(null);
-    const [loaded, setLoaded] = useState<LoadingState>(LoadingState.LOADING);
+function ThreadPreview(prop: {
+    thread: Thread;
+    disableUserElement?: boolean;
+    focused?: boolean;
+}) {
 
-    const fetchUser = async function (userId: number) {
-        return testData.getSender(userId);
-    }
-
-    useEffect(() => {
-        let ignore = false;
-        fetchUser(prop.thread.threadOwnerId)
-            .then(res => {
-                if(ignore) return;
-                setLoaded(LoadingState.LOADED)
-                if (res === null) {
-                    setLoaded(LoadingState.ERROR)
-                    return;
-                }
-                setThreadOwner(res)
-            })
-            .catch(reason => {
-                if(ignore) return;
-                console.log(reason)
-                setLoaded(LoadingState.ERROR)
-            })
-        return () => {
-            ignore = true;
-        }
-    }, [prop.thread.threadOwnerId])
-
-    const getUserElement = () => {
-        switch (loaded) {
-            case LoadingState.LOADED:
-                if (threadOwner === null) break;
-                return <div className={"ownerSI"}>
-                    <img className={"avatar"} src={threadOwner.avatar}/>
-                    <p className={"username"}>{threadOwner.username}</p>
-                    <p className={"username"}>{threadOwner.type}</p>
-                </div>;
-            case LoadingState.ERROR:
-                return <div className={"ownerSI"}>
-                    <NotFoundSvg className={"avatar"}/>
-                    <p className={"username"}>not-found-user</p>
-                </div>
-            default:
-                return <div className={"ownerSI"}>
-                    <Spin/>
-                </div>
-        }
-    }
-
+    const navigate = useNavigate();
     return (
         <>
-            <div className={"threadContainer"}>
-                {getUserElement()}
+            <div id={prop.thread.threadId.toString()} className={"thread-container" + (!prop.focused ? '' : ' thread-focused')}
+                 onClick={()=>{navigate(`/thread/${prop.thread.threadId}/page/0`)}}>
+                {prop.disableUserElement ?? <UserElement userId={prop.thread.threadOwnerId}/>}
                 <div className={"thread"}>
-                    <h1 className={'threadTitle'}>{prop.thread.threadTitle}</h1>
+                    <h1 className={'thread-title'}>{prop.thread.threadTitle}</h1>
                     <div className={'tags'}>
                     </div>
-                    <div className={"threadInfo"}>
+                    <div className={"thread-info"}>
                         <p>{prop.thread.threadStatus}</p>
                         <p>Message count: {prop.thread.messageCount}</p>
                     </div>
-                    <div className={"threadInfo"}>
+                    <div className={"thread-info"}>
                         <p>Created: {TimestampFormatter(prop.thread.createdAt)}</p>
                         <Rate className="rate" disabled value={4.51}/>
                     </div>

@@ -1,4 +1,8 @@
-.threadContainer{
+.thread-focused{
+    border: var(--acent-color) solid 5px;
+    margin: -5px;
+}
+.thread-container{
     display: flex;
     flex-direction: row;
     flex: 1;
@@ -15,13 +19,11 @@
         }
     }
 }
-.threadContainer *{
-    margin: 0;
+.thread-container:hover{
+    background: var(--acent-bg);
 }
-.avatar{
-    width: 10svh;
-    height: 10svh;
-    object-fit: scale-down;
+.thread-container *{
+    margin: 0;
 }
 .thread{
     display: flex;
@@ -31,15 +33,11 @@
     gap: 5px;
     flex-grow: 1;
 }
-.ownerSI{
-    max-width: 15svw;
-    min-width: max(12svh, 12svw);
-}
 .tags{
     align-self: stretch;
     flex-grow: 1;
 }
-.threadTitle{
+.thread-title{
     color: var(--acent-text);
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -48,7 +46,7 @@
     text-overflow: ellipsis;
     text-align: left;
 }
-.threadInfo{
+.thread-info{
     width: 100%;
     display: flex;
     flex-direction: row;

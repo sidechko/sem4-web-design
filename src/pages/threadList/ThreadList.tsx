@@ -5,19 +5,35 @@ import {useEffect, useState} from "react";
 import {LoadingState, type Thread} from '../../data/structs.ts'
 import testData from "../../data/testData.ts";
 import {useNavigate, useParams} from "react-router-dom";
-import ThreadListSetting from "../../components/thread/threadListSettings/ThreadListSetting.tsx";
+import ListSetting from "../../components/thread/threadListSettings/ListSetting.tsx";
+import {Spin} from "antd";
 
-function ThreadList(prop: { threadType: string, name: string }) {
+function ThreadList() {
+
+    //Work with path
+    const {page = 0} = useParams();
+    //Search params
+    const searchParams = new URLSearchParams(location.search);
+    const urlFocusThread = searchParams.get('focus');
+    const focusedThreadId = Number.isNaN(Number(urlFocusThread ?? Number.NaN)) ? -1 : Number(urlFocusThread);
+    //States
     const [loaded, setLoaded] = useState<LoadingState>(LoadingState.LOADING);
     const [threads, setThreads] = useState<Thread[]>([]);
-    const [perPage, setPerPage] = useState(2);
+    const [perPage, setPerPage] = useState(10);
     const [threadCount, setThreadCount] = useState(0);
-    const params = useParams();
-    const navigate = useNavigate();
 
-    const fetchThread = async (pageIdxStr: string | undefined, count: number) => {
-        const pageIdx = pageIdxStr == undefined ? 0 : Number(pageIdxStr);
-        return testData.threadsInfo.slice(pageIdx * count, (pageIdx + 1) * count);
+    const navigate = useNavigate();
+    const navigateFunction = (pageIdx: number) => {
+        if (Math.ceil(threadCount / perPage) > pageIdx && pageIdx >= 0) {
+            navigate(`/threads/${pageIdx}`);
+        }
+    }
+
+    const fetchThreads = async (pageIdx: number, count: number) => {
+        // await testData.delay(10000)
+        if (!Number.isNaN(Number(pageIdx)))
+            return testData.threadsInfo.slice(pageIdx * count, (pageIdx + 1) * count);
+        return [];
     }
 
     const fetchThreadCount = async () => {
@@ -26,7 +42,11 @@ function ThreadList(prop: { threadType: string, name: string }) {
 
     useEffect(() => {
         let ignore = false;
-        fetchThread(params.page, perPage)
+        fetchThreadCount()
+            .then(res => {
+                setThreadCount(res)
+            })
+        fetchThreads(Number(page), perPage)
             .then(res => {
                 if (ignore) return;
                 setLoaded(LoadingState.LOADED);
@@ -36,41 +56,44 @@ function ThreadList(prop: { threadType: string, name: string }) {
                 if (ignore) return;
                 setLoaded(LoadingState.ERROR)
             });
-        fetchThreadCount()
-            .then(res => {
-                setThreadCount(res)
-            })
         return () => {
             ignore = true;
         }
-    }, [params.page, perPage, threadCount])
-
+    }, [page, perPage, threadCount])
 
 
     return (
         <>
-            <h1>Треды: {prop.name}</h1>
-            <ThreadListSetting
-                threadCount={threadCount}
-                currentThreadPerPage={perPage}
-                threadPerPageFunction={(count: number) => {setPerPage(count)}}
-                navigateFunction={(pIdx:number, force: boolean) => {
-                    const finPage = force ? pIdx : Number(params.page) + pIdx;
-                    navigate(`/threads/${prop.threadType}/${finPage}`);
-                }}
-            />
-            <section className={'lastThreadHolder'}>
-                {threads.map(thread => <ThreadPreview key={thread.threadId} thread={thread}/>)}
-            </section>
-            <ThreadListSetting
-                threadCount={threadCount}
-                currentThreadPerPage={perPage}
-                threadPerPageFunction={(count: number) => {setPerPage(count)}}
-                navigateFunction={(pIdx:number, force: boolean) => {
-                    const finPage = force ? pIdx : Number(params.page) + pIdx;
-                    navigate(`/threads/${prop.threadType}/${finPage}`);
-                }}
-            />
+            <h1>Доступные ветки</h1>
+            {
+                loaded == LoadingState.LOADED ?
+                    <>
+                        <ListSetting
+                            currentPage={Number(page)}
+                            count={threadCount}
+                            currentPerPage={perPage}
+                            perPageFunction={setPerPage}
+                            navigateFunction={navigateFunction}
+                        />
+                        <section className={'last-thread-holder'}>
+                            {
+                                threads.map(thread =>
+                                    <ThreadPreview
+                                        key={thread.threadId}
+                                        focused={thread.threadId === focusedThreadId}
+                                        thread={thread}/>)
+                            }
+                        </section>
+                        <ListSetting
+                            currentPage={Number(page)}
+                            count={threadCount}
+                            currentPerPage={perPage}
+                            perPageFunction={setPerPage}
+                            navigateFunction={navigateFunction}
+                        />
+                    </> :
+                    <Spin size="large"/>
+            }
         </>
     )
 }

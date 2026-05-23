@@ -11,6 +11,7 @@
 
     color: var(--text);
     font-family: Jost, sans-serif;
+    max-width: 100svw;
 }
 body {
     margin: 0;
@@ -22,7 +23,7 @@ hr{
 }
 
 #content{
-    width: 1700px;
+    width: 1300px;
     max-width: 100%;
     margin: 0 auto;
     text-align: center;
@@ -30,4 +31,14 @@ hr{
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
+}
+.accent-clickable{
+    background: var(--acent-bg);
+    color: var(--acent-color);
+    border: none;
+    outline: none;
+}
+.accent-clickable:hover{
+    background: var(--alt-acent-color);
+    color: var(--acent-bg);
 }

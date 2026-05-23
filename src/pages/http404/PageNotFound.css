@@ -18,9 +18,7 @@
 }
 #home-page-button{
     padding: 2svh 2svw;
-    background: var(--acent-bg);
     border-radius: 10px;
-    color: var(--acent-color);
     text-decoration: none;
     transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }

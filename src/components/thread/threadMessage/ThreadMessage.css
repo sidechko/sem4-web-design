@@ -1,0 +1,51 @@
+.message{
+    display: flex;
+    flex-direction: row;
+    background: var(--bg);
+}
+.info-holder{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.info-holder-spacer{
+    flex: 1;
+}
+@media (max-width: 500px) {
+    .message{
+        flex-direction: column;
+        > *{
+           font-size: 0.8em;
+        }
+        .owner-short-info {
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            margin: 2svh;
+            > .avatar {
+                display: none;
+            }
+            > p{
+                font-size: 1em !important;
+            }
+        }
+        .info-holder{
+            flex-direction: row;
+        }
+    }
+}
+
+.markdown-message-holder{
+    margin: 5px;
+    flex: 1;
+    background: var(--acent-bg);
+    border-radius: 5px;
+    padding: 0 2svw;
+}
+.markdown-message-holder img{
+    max-width: 100%;
+    object-fit: scale-down;
+}
+.katex-html{
+    display: none;
+}

@@ -1,4 +1,49 @@
-.listSettings{
+.list-settings {
     display: flex;
     justify-content: space-between;
+    margin: 10px 0;
+    gap: 5px;
+    * {
+        font-size: 1.2em;
+        align-self: stretch;
+
+        @media (max-width: 500px) {
+            font-size: 0.8em;
+        }
+    }
+    input, button {
+        border: none;
+        outline: none;
+        max-width: 10svw;
+    }
 }
+
+.page-selector {
+    flex-grow: 1;
+    /*gap: 5px;*/
+    display: flex;
+    *{
+        margin: 0;
+    }
+}
+.page-selector input {
+    width: 5svw;
+}
+.current-page-selector{
+    color: var(--acent-color);
+    background-color: var(--acent-bg);
+    border-radius: 5px;
+}
+.page-selector-item{
+    display: flex;
+    padding: 0 5px;
+}
+.page-selector-item:hover {
+    text-decoration: underline;
+}
+.hidden{
+    opacity: 0;
+    width: 0 !important;
+    padding: 0 !important;
+}
+.shown{ opacity: 1; }
