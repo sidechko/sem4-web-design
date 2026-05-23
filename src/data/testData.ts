@@ -4,7 +4,7 @@ const testUserShortData : User = {
     userId: 0,
     username: 's1pepega',
     avatar: location.hostname !== 'localhost' ?
-        location.origin+'/sem4-web-design/assets/pepega-eng.png' :
+        'https://avatars.githubusercontent.com/u/44977883?v=4' :
         '/sem4-web-design/src/assets/pepega-eng.png',
     type: UserType.USER
 }
