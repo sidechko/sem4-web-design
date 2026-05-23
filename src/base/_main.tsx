@@ -10,8 +10,8 @@ import './_main.css'
 
 createRoot(document.getElementById('root')!).render(
     <BrowserRouter basename={'/sem4-web-design/'}>
+        <NavBar/>
         <div id="content">
-            <NavBar/>
             <Routes>
                 <Route path="/" element={<Navigate to={'/threads/0'}/>}/>
                 <Route path={'/threads/:page'} element={<ThreadList/>}/>
