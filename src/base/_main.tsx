@@ -9,7 +9,7 @@ import './_main.css'
 
 
 createRoot(document.getElementById('root')!).render(
-    <BrowserRouter basename={'/sem4-web-design'}>
+    <BrowserRouter basename={'/sem4-web-design/'}>
         <div id="content">
             <NavBar/>
             <Routes>
